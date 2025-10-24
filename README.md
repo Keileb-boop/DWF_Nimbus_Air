@@ -38,3 +38,17 @@ se debe crear la base de datos con el siguiente query:
 
 Esto crea la base de datos y una vez se corre el programa en IntelliJ IDEA crea las tablas para
 futuros INSERTS de las páginas web.
+
+
+<h1>Integrantes:
+
+- Camila Elizabeth Castillo Joya CJ220498
+- Bryan Steven Hernández Polio HP240512
+- Caleb Alejandro Peñate Deras PD230166
+
+</h1>
+
+<h2>🪶 Licencia
+
+Este proyecto está bajo la licencia MIT – libre para uso educativo y extensiones no comerciales.
+</h2>
