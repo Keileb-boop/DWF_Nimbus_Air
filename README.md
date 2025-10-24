@@ -22,7 +22,8 @@ Desarrollado como un sistema modular que integra backend en **PHP** y **Java**, 
 
 ---
 
-## 🧠 **Arquitectura general**
-
-El sistema sigue una arquitectura **modular**:
-
+##  **⚙️Tecnologías**
+<p align="center">
+<img width="1400" height="392" alt="swagger-banner" src="https://github.com/user-attachments/assets/d5c01a26-f6a5-4eac-aed6-c105a86f09d7" />
+<img width="402" height="125" alt="mariadb" src="https://github.com/user-attachments/assets/829e631e-7ecf-407a-a166-9eed689f64db" />
+</p>
