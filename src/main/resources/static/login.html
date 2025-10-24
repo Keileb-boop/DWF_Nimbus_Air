@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nimbus Air - Login</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #eef8fc 0%, #b6e2f0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-header {
+            background-color: #b6e2f0;
+            padding: 15px 30px;
+            border-bottom: 2px solid #8ac4d0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .logo h1 {
+            color: #003b58;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .login-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-title {
+            text-align: center;
+            color: #003b58;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #eef8fc;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            color: #3b82f6;
+            border-bottom: 3px solid #3b82f6;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background: #2563eb;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #message {
+            margin-top: 20px;
+            min-height: 50px;
+        }
+
+        .message {
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .message.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .message.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .message.info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+        }
+
+        .login-footer {
+            text-align: center;
+            padding: 20px;
+            background: #b6e2f0;
+            color: #333;
+            margin-top: auto;
+        }
+
+        @media (max-width: 480px) {
+            .login-box {
+                padding: 30px 20px;
+            }
+
+            .login-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="login-header">
+    <div class="logo">
+        <img src="img/nimbusair2.png" alt="Nimbus Air Logo">
+        <h1>NIMBUS AIR</h1>
+    </div>
+</header>
+
+<main class="login-container">
+    <div class="login-box">
+        <h2 class="login-title">Iniciar Sesión</h2>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('login')">Iniciar Sesión</button>
+            <button class="tab" onclick="showTab('register')">Registrarse</button>
+        </div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" required placeholder="ejemplo@correo.com">
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Contraseña:</label>
+                <input type="password" id="loginPassword" required placeholder="Tu contraseña">
+            </div>
+            <button type="submit">Ingresar</button>
+        </form>
+
+        <form id="registerForm" class="hidden">
+            <div class="form-group">
+                <label for="registerName">Nombre completo:</label>
+                <input type="text" id="registerName" required placeholder="Tu nombre completo">
+            </div>
+            <div class="form-group">
+                <label for="registerEmail">Email:</label>
+                <input type="email" id="registerEmail" required placeholder="ejemplo@correo.com">
+            </div>
+            <div class="form-group">
+                <label for="registerPassword">Contraseña:</label>
+                <input type="password" id="registerPassword" required placeholder="Minimo 6 caracteres" minlength="6">
+            </div>
+            <button type="submit">Crear Cuenta</button>
+        </form>
+
+        <div id="message"></div>
+    </div>
+</main>
+
+<footer class="login-footer">
+    © 2025 Nimbus Air. Todos los derechos reservados.
+</footer>
+
+<script>
+    const BACKEND_URL = 'http://localhost:8080';
+
+    function showTab(tabName) {
+        document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+
+        if (tabName === 'login') {
+            document.querySelector('.tab:nth-child(1)').classList.add('active');
+        } else {
+            document.querySelector('.tab:nth-child(2)').classList.add('active');
+        }
+
+        document.getElementById('loginForm').classList.add('hidden');
+        document.getElementById('registerForm').classList.add('hidden');
+
+        document.getElementById(tabName + 'Form').classList.remove('hidden');
+
+        document.getElementById('message').innerHTML = '';
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    const messageDiv = document.getElementById('message');
+
+    messageDiv.innerHTML = '<div class="message info">Iniciando sesion...</div>';
+
+    try {
+        const response = await fetch(BACKEND_URL + '/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            messageDiv.innerHTML = '<div class="message success">Login exitoso! Redirigiendo...</div>';
+
+            localStorage.setItem('jwtToken', data.token);
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userName', data.name || email.split('@')[0]);
+            localStorage.setItem('userId', data.userId || '');
+            localStorage.setItem('userRole', data.role || 'USER');
+
+            setTimeout(() => {
+                window.location.href = 'nimbus_air.html';
+            }, 1500);
+
+        } else {
+            const errorMsg = data.message || 'Credenciales incorrectas';
+            messageDiv.innerHTML = '<div class="message error">' + errorMsg + '</div>';
+        }
+    } catch (error) {
+        console.error('Error en login:', error);
+        messageDiv.innerHTML = '<div class="message error">Error de conexion con el servidor</div>';
+    }
+});
+
+document.getElementById('registerForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('registerName').value;
+    const email = document.getElementById('registerEmail').value;
+    const password = document.getElementById('registerPassword').value;
+    const messageDiv = document.getElementById('message');
+
+    if (password.length < 6) {
+        messageDiv.innerHTML = '<div class="message error">La contraseña debe tener al menos 6 caracteres</div>';
+        return;
+    }
+
+    messageDiv.innerHTML = '<div class="message info">Creando cuenta...</div>';
+
+    try {
+        const response = await fetch(BACKEND_URL + '/api/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                password: password
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            messageDiv.innerHTML = '<div class="message success">Cuenta creada exitosamente! Ahora puede iniciar sesion.</div>';
+
+            document.getElementById('registerForm').reset();
+
+            setTimeout(() => {
+                showTab('login');
+                document.getElementById('loginEmail').value = email;
+            }, 2000);
+
+        } else {
+            const errorMsg = data.message || 'Error al crear usuario';
+            messageDiv.innerHTML = '<div class="message error">' + errorMsg + '</div>';
+        }
+    } catch (error) {
+        console.error('Error en registro:', error);
+        messageDiv.innerHTML = '<div class="message error">Error de conexion con el servidor</div>';
+    }
+});
+
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            setTimeout(() => {
+                const form = document.querySelector('form:not(.hidden)');
+                if (form) {
+                    const firstInput = form.querySelector('input');
+                    if (firstInput) firstInput.focus();
+                }
+            }, 100);
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('loginEmail').focus();
+    });
+</script>
+</body>
+</html>

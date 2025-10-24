@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nimbus Air - Mis Reservas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <img src="img/nimbusair2.png" alt="Nimbus Air Logo">
+        <h1>NIMBUS AIR</h1>
+    </div>
+    <button class="btn-inicio" onclick="window.location.href='nimbus_air.html'">Volver al Inicio</button>
+</header>
+
+<main class="contenedor">
+    <div class="card" id="detallesReserva">
+        <h2>Mis Reservas</h2>
+        <div id="listaReservas">
+
+        </div>
+    </div>
+</main>
+
+
+<div id="modalPago" class="modal">
+    <div class="modal-contenido">
+        <div class="modal-header">
+            <h2>Realizar Pago</h2>
+            <span class="cerrar" onclick="cerrarModalPago()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="info-reserva-pago">
+                <h3>Detalles de la Reserva</h3>
+                <div id="infoReservaPago"></div>
+                <p class="precio-total">PRECIO TOTAL: <strong>$300</strong></p>
+            </div>
+
+            <form id="formPago" class="form-pago">
+                <input type="hidden" id="reservaIdPago">
+
+                <div class="form-grupo">
+                    <label>Método de pago:</label>
+                    <div class="metodos-pago">
+                        <label class="metodo-option">
+                            <input type="radio" name="metodoPago" value="TARJETA" required>
+                            <i class="bi bi-credit-card"></i> Tarjeta
+                        </label>
+                        <label class="metodo-option">
+                            <input type="radio" name="metodoPago" value="PAYPAL" required>
+                            <i class="bi bi-paypal"></i> PayPal
+                        </label>
+                        <label class="metodo-option">
+                            <input type="radio" name="metodoPago" value="TRANSFERENCIA" required>
+                            <i class="bi bi-bank"></i> Transferencia
+                        </label>
+                    </div>
+                </div>
+
+                <div id="camposTarjeta" class="campos-tarjeta" style="display: none;">
+                    <div class="form-grupo">
+                        <label for="numeroTarjeta">Número de tarjeta:</label>
+                        <input type="text" id="numeroTarjeta" placeholder="XXXX-XXXX-XXXX-XXXX" maxlength="19">
+                    </div>
+                    <div class="fila">
+                        <div class="form-grupo">
+                            <label for="fechaVencimiento">Fecha de vencimiento:</label>
+                            <input type="month" id="fechaVencimiento">
+                        </div>
+                        <div class="form-grupo">
+                            <label for="cvv">CVV:</label>
+                            <input type="text" id="cvv" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="botones-pago">
+                    <button type="submit" class="btn-confirmar">
+                        <i class="bi bi-check-circle"></i> Confirmar pago
+                    </button>
+                    <button type="button" class="btn-cancelar" onclick="cerrarModalPago()">
+                        <i class="bi bi-x-circle"></i> Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer>
+    © 2025 Nimbus Air. Todos los derechos reservados.
+</footer>
+
+<style>
+    * { box-sizing: border-box; font-family: "Poppins", sans-serif; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body { display: flex; flex-direction: column; background-color: #eef8fc; }
+    .header { display: flex; justify-content: space-between; align-items: center; background-color: #b6e2f0; padding: 10px 30px; border-bottom: 2px solid #8ac4d0; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo img { width: 60px; }
+    h1 { font-size: 24px; color: #003b58; }
+    .btn-inicio { background-color: #3b82f6; color: white; border: none; padding: 10px 25px; border-radius: 20px; font-size: 16px; cursor: pointer; }
+    .btn-inicio:hover { background-color: #2563eb; }
+    .contenedor { flex: 1; padding: 30px; }
+    .card { background-color: #cbeaf7; border-radius: 15px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); padding: 30px 35px; max-width: 800px; margin: 0 auto; }
+    .card h2 { background-color: #b0e3f6; text-align: center; padding: 12px; border-radius: 10px; color: #003b58; font-size: 20px; margin-bottom: 20px; }
+    p { font-size: 15px; margin: 8px 0; }
+    .botones { display: flex; justify-content: space-between; margin-top: 25px; gap: 10px; flex-wrap: wrap; }
+    .btn-detalle { flex: 1; padding: 10px 15px; font-size: 16px; border: none; border-radius: 20px; background-color: #3b82f6; color: white; cursor: pointer; text-align: center; transition: background-color 0.3s; }
+    .btn-detalle:hover { background-color: #2563eb; }
+    footer { text-align: center; padding: 15px; background-color: #b6e2f0; color: #333; font-size: 13px; margin-top: auto; }
+    .reserva-item { background: white; padding: 20px; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .sin-reservas { text-align: center; padding: 40px; color: #666; }
+
+
+    .botones-reserva { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
+    .btn-pagar { background-color: #10b981; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px; }
+    .btn-pagar:hover { background-color: #059669; }
+    .btn-modificar { background-color: #f59e0b; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px; }
+    .btn-modificar:hover { background-color: #d97706; }
+    .btn-cancelar-reserva { background-color: #ef4444; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px; }
+    .btn-cancelar-reserva:hover { background-color: #dc2626; }
+
+
+    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
+    .modal-contenido { background-color: white; margin: 5% auto; padding: 0; border-radius: 15px; width: 90%; max-width: 500px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid #eee; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; border-radius: 15px 15px 0 0; }
+    .modal-header h2 { margin: 0; color: white; }
+    .cerrar { font-size: 28px; font-weight: bold; cursor: pointer; }
+    .cerrar:hover { color: #ccc; }
+    .modal-body { padding: 20px; }
+
+
+    .info-reserva-pago { background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #3b82f6; }
+    .info-reserva-pago h3 { margin-bottom: 10px; color: #003b58; }
+    .precio-total { text-align: center; font-size: 18px; margin-top: 15px; padding-top: 15px; border-top: 2px solid #ddd; }
+    .form-grupo { margin-bottom: 15px; }
+    .form-grupo label { display: block; margin-bottom: 5px; font-weight: 500; color: #333; }
+    .form-grupo input, .form-grupo select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
+    .metodos-pago { display: flex; gap: 10px; flex-wrap: wrap; }
+    .metodo-option { flex: 1; min-width: 120px; text-align: center; padding: 10px; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
+    .metodo-option:hover { border-color: #3b82f6; }
+    .metodo-option input { display: none; }
+    .metodo-option input:checked + .bi { color: #3b82f6; }
+    .metodo-option input:checked { background-color: #3b82f6; color: white; }
+    .metodo-option .bi { font-size: 24px; display: block; margin-bottom: 5px; color: #666; }
+    .campos-tarjeta { background: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 10px; }
+    .fila { display: flex; gap: 15px; }
+    .fila .form-grupo { flex: 1; }
+    .botones-pago { display: flex; gap: 10px; margin-top: 20px; }
+    .btn-confirmar { flex: 2; background-color: #10b981; color: white; border: none; padding: 12px; border-radius: 25px; font-size: 16px; cursor: pointer; }
+    .btn-confirmar:hover { background-color: #059669; }
+    .btn-cancelar { flex: 1; background-color: #6c757d; color: white; border: none; padding: 12px; border-radius: 25px; font-size: 16px; cursor: pointer; }
+    .btn-cancelar:hover { background-color: #5a6268; }
+
+
+    .estado-confirmada { color: #10b981; font-weight: bold; }
+    .estado-cancelada { color: #ef4444; font-weight: bold; }
+    .estado-pendiente { color: #f59e0b; font-weight: bold; }
+</style>
+
+<script>
+    const token = localStorage.getItem('jwtToken');
+    const listaReservas = document.getElementById("listaReservas");
+    const modalPago = document.getElementById("modalPago");
+    let reservasActuales = [];
+
+    if (!token) {
+        alert('Debes iniciar sesión para ver las reservas');
+        window.location.href = "login.html";
+    } else {
+        cargarReservas();
+    }
+
+    function cargarReservas() {
+        fetch('http://localhost:8080/api/reservas', {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Error al obtener reservas');
+            }
+        })
+        .then(data => {
+            console.log('Datos recibidos:', data);
+            reservasActuales = data.reservas || [];
+            mostrarReservas(reservasActuales);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            listaReservas.innerHTML = `
+                <div class="sin-reservas">
+                    <h3>Error al cargar las reservas</h3>
+                    <p>No se pudieron cargar tus reservas. Por favor, intenta más tarde.</p>
+                </div>
+            `;
+            crearBotonesPrincipales();
+        });
+    }
+
+    function mostrarReservas(reservas) {
+        if (reservas.length === 0) {
+            listaReservas.innerHTML = `
+                <div class="sin-reservas">
+                    <h3>No tienes reservas aún</h3>
+                    <p>¡Empieza a planear tu próximo viaje!</p>
+                </div>
+            `;
+            crearBotonesPrincipales();
+            return;
+        }
+
+        let html = '';
+        reservas.forEach((reserva, index) => {
+            const formatDate = fecha => {
+                if (!fecha) return 'N/A';
+                const d = new Date(fecha);
+                return `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
+            };
+
+            const campos = [
+                { label: "País de origen", value: reserva.paisOrigen },
+                { label: "Ciudad de origen", value: reserva.ciudadOrigen },
+                { label: "País de destino", value: reserva.paisDestino },
+                { label: "Ciudad de destino", value: reserva.ciudadDestino },
+                { label: "Fecha de vuelo", value: formatDate(reserva.fechaVuelo) },
+                { label: "Hora de salida", value: reserva.horaSalida ? reserva.horaSalida.substring(0, 5) : 'N/A' },
+                { label: "Aerolínea", value: reserva.aerolinea },
+                { label: "Clase de vuelo", value: reserva.claseVuelo },
+                { label: "Asiento preferido", value: reserva.asientoPreferido },
+                { label: "Nombre completo", value: reserva.nombreCompleto },
+                { label: "Fecha de nacimiento", value: formatDate(reserva.fechaNacimiento) },
+                { label: "Número de pasaporte", value: reserva.numeroPasaporte }
+            ];
+
+            const estadoClass = `estado-${reserva.estado?.toLowerCase() || 'confirmada'}`;
+
+            html += `
+                <div class="reserva-item">
+                    <h3>Reserva #${index + 1} <span class="${estadoClass}">(${reserva.estado || 'CONFIRMADA'})</span></h3>
+                    ${campos.map(campo => `
+                        <p><strong>${campo.label}:</strong> ${campo.value || 'N/A'}</p>
+                    `).join('')}
+
+                    <div class="botones-reserva">
+                        <button class="btn-pagar" onclick="abrirModalPago(${reserva.id})" ${reserva.estado === 'CANCELADA' ? 'disabled' : ''}>
+                            <i class="bi bi-credit-card"></i> Pagar Reserva
+                        </button>
+                        <button class="btn-modificar" onclick="modificarReserva(${reserva.id})" ${reserva.estado === 'CANCELADA' ? 'disabled' : ''}>
+                            <i class="bi bi-pencil"></i> Modificar
+                        </button>
+                        <button class="btn-cancelar-reserva" onclick="cancelarReserva(${reserva.id})" ${reserva.estado === 'CANCELADA' ? 'disabled' : ''}>
+                            <i class="bi bi-x-circle"></i> Cancelar
+                        </button>
+                    </div>
+                </div>
+            `;
+        });
+
+        listaReservas.innerHTML = html;
+        crearBotonesPrincipales();
+    }
+
+   function crearBotonesPrincipales() {
+
+    const botonesExistentes = document.querySelector('.botones');
+    if (botonesExistentes) {
+        return;
+    }
+
+    const divBotones = document.createElement("div");
+    divBotones.className = "botones";
+
+    const btnNueva = document.createElement("button");
+    btnNueva.className = "btn-detalle";
+    btnNueva.innerHTML = '<i class="bi bi-plus-circle"></i> Hacer otra reserva';
+    btnNueva.onclick = () => window.location.href = "reserva.html";
+
+    const btnVolver = document.createElement("button");
+    btnVolver.className = "btn-detalle";
+    btnVolver.innerHTML = '<i class="bi bi-house"></i> Volver al inicio';
+    btnVolver.onclick = () => window.location.href = "nimbus_air.html";
+
+    divBotones.appendChild(btnNueva);
+    divBotones.appendChild(btnVolver);
+
+    const card = document.getElementById("detallesReserva");
+    card.appendChild(divBotones);
+}
+
+
+    function abrirModalPago(reservaId) {
+        const reserva = reservasActuales.find(r => r.id === reservaId);
+        if (!reserva) return;
+
+        document.getElementById('reservaIdPago').value = reservaId;
+
+
+        const infoReserva = document.getElementById('infoReservaPago');
+        infoReserva.innerHTML = `
+            <p><strong>Vuelo:</strong> ${reserva.ciudadOrigen} → ${reserva.ciudadDestino}</p>
+            <p><strong>Fecha:</strong> ${new Date(reserva.fechaVuelo).toLocaleDateString()}</p>
+            <p><strong>Pasajero:</strong> ${reserva.nombreCompleto}</p>
+            <p><strong>Clase:</strong> ${reserva.claseVuelo}</p>
+        `;
+
+        modalPago.style.display = 'block';
+    }
+
+    function cerrarModalPago() {
+        modalPago.style.display = 'none';
+        document.getElementById('formPago').reset();
+        document.getElementById('camposTarjeta').style.display = 'none';
+    }
+
+
+    document.querySelectorAll('input[name="metodoPago"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const camposTarjeta = document.getElementById('camposTarjeta');
+            camposTarjeta.style.display = this.value === 'TARJETA' ? 'block' : 'none';
+        });
+    });
+
+
+    document.getElementById('numeroTarjeta').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 16) value = value.substring(0, 16);
+        value = value.replace(/(\d{4})/g, '$1-').replace(/-$/, '');
+        e.target.value = value;
+    });
+
+
+    document.getElementById('formPago').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const reservaId = document.getElementById('reservaIdPago').value;
+        const metodoPago = document.querySelector('input[name="metodoPago"]:checked').value;
+
+        const pagoData = {
+            reservaId: parseInt(reservaId),
+            metodoPago: metodoPago
+        };
+
+        if (metodoPago === 'TARJETA') {
+            pagoData.numeroTarjeta = document.getElementById('numeroTarjeta').value.replace(/-/g, '');
+            pagoData.fechaVencimiento = document.getElementById('fechaVencimiento').value;
+            pagoData.cvv = document.getElementById('cvv').value;
+
+            if (!pagoData.numeroTarjeta || !pagoData.fechaVencimiento || !pagoData.cvv) {
+                alert('Por favor completa todos los campos de la tarjeta');
+                return;
+            }
+        }
+
+        fetch('http://localhost:8080/api/pagos', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(pagoData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert('Error al procesar pago: ' + data.error);
+            } else {
+                alert('¡Pago procesado exitosamente! Código: ' + data.codigoTransaccion);
+                cerrarModalPago();
+                cargarReservas();
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error al procesar el pago');
+        });
+    });
+
+    function modificarReserva(reservaId) {
+    window.location.href = `modificar_reserva.html?id=${reservaId}`;
+    }
+
+    function cancelarReserva(reservaId) {
+        if (confirm('¿Estás seguro de que quieres cancelar esta reserva?')) {
+            fetch(`http://localhost:8080/api/reservas/${reservaId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert('Error al cancelar reserva: ' + data.error);
+                } else {
+                    alert('Reserva cancelada exitosamente');
+                    cargarReservas();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al cancelar la reserva');
+            });
+        }
+    }
+
+
+    window.onclick = function(event) {
+        if (event.target === modalPago) {
+            cerrarModalPago();
+        }
+    }
+</script>
+</body>
+</html>

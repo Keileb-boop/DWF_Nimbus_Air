@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nimbus Air - Admin Sugerencias</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+          background: linear-gradient(135deg, #eef8fc 0%, #b6e2f0 100%);
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: #b6e2f0;
+          padding: 15px 30px;
+          border-bottom: 2px solid #8ac4d0;
+          flex-wrap: wrap;
+          gap: 15px;
+        }
+
+        .logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-weight: bold;
+          font-size: 20px;
+          color: #003b58;
+        }
+
+        .logo img {
+          width: 50px;
+          height: 50px;
+        }
+
+        .header-buttons {
+          display: flex;
+          gap: 15px;
+        }
+
+        .header-buttons button {
+          background: none;
+          border: 2px solid #3b82f6;
+          color: #3b82f6;
+          padding: 8px 15px;
+          border-radius: 20px;
+          cursor: pointer;
+          font-weight: 500;
+          transition: all 0.3s ease;
+        }
+
+        .header-buttons button:hover {
+          background: #3b82f6;
+          color: white;
+        }
+
+        .user-section {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          color: #003b58;
+          font-weight: 500;
+        }
+
+        .user-info {
+          background: rgba(255, 255, 255, 0.3);
+          padding: 8px 15px;
+          border-radius: 20px;
+          border: 1px solid #8ac4d0;
+        }
+
+        .btn-logout {
+          background: #ef4444;
+          color: white;
+          border: none;
+          padding: 8px 15px;
+          border-radius: 20px;
+          cursor: pointer;
+          font-weight: 500;
+          transition: background 0.3s ease;
+        }
+
+        .btn-logout:hover {
+          background: #dc2626;
+        }
+
+        .social-icons {
+          display: flex;
+          gap: 15px;
+        }
+
+        .social-icons a {
+          color: #000000;
+          text-decoration: none;
+          transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+          transform: scale(1.2);
+        }
+
+        .main-content {
+          flex: 1;
+          padding: 40px 20px;
+          text-align: center;
+          max-width: 1200px;
+          margin: 0 auto;
+          width: 100%;
+        }
+
+        .main-content h1 {
+          color: #003b58;
+          font-size: 2.5rem;
+          margin-bottom: 10px;
+          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-content p {
+          color: #555;
+          margin-bottom: 30px;
+          font-size: 1.1rem;
+        }
+
+        .btn-back {
+          background: #64748b;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 20px;
+          cursor: pointer;
+          font-weight: 500;
+          transition: all 0.3s ease;
+          margin-bottom: 20px;
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+        }
+
+        .btn-back:hover {
+          background: #475569;
+          transform: translateY(-2px);
+        }
+
+        .sugerencias-container {
+          background: white;
+          padding: 30px;
+          border-radius: 15px;
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+          margin-top: 20px;
+        }
+
+        .estadisticas {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 20px;
+          margin-bottom: 30px;
+        }
+
+        .estadistica-card {
+          background: #f8fafc;
+          padding: 20px;
+          border-radius: 10px;
+          border-left: 4px solid #3b82f6;
+        }
+
+        .estadistica-numero {
+          font-size: 2rem;
+          font-weight: bold;
+          color: #003b58;
+        }
+
+        .estadistica-texto {
+          color: #666;
+          font-size: 0.9rem;
+        }
+
+        .tabla-sugerencias {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 20px;
+        }
+
+        .tabla-sugerencias th,
+        .tabla-sugerencias td {
+          padding: 12px 15px;
+          text-align: left;
+          border-bottom: 1px solid #e2e8f0;
+        }
+
+        .tabla-sugerencias th {
+          background: #f1f5f9;
+          color: #003b58;
+          font-weight: 600;
+        }
+
+        .tabla-sugerencias tr:hover {
+          background: #f8fafc;
+        }
+
+        .estado-pendiente {
+          background: #fef3c7;
+          color: #92400e;
+          padding: 4px 8px;
+          border-radius: 12px;
+          font-size: 0.8rem;
+          font-weight: 500;
+        }
+
+        .estado-revisada {
+          background: #d1fae5;
+          color: #065f46;
+          padding: 4px 8px;
+          border-radius: 12px;
+          font-size: 0.8rem;
+          font-weight: 500;
+        }
+
+        .btn-revisar {
+          background: #3b82f6;
+          color: white;
+          border: none;
+          padding: 6px 12px;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 0.8rem;
+          transition: background 0.3s ease;
+        }
+
+        .btn-revisar:hover {
+          background: #2563eb;
+        }
+
+        .btn-revisar:disabled {
+          background: #9ca3af;
+          cursor: not-allowed;
+        }
+
+        .tipo-sugerencia {
+          background: #e0e7ff;
+          color: #3730a3;
+          padding: 4px 8px;
+          border-radius: 12px;
+          font-size: 0.8rem;
+          font-weight: 500;
+        }
+
+        .footer {
+          text-align: center;
+          padding: 20px;
+          background: #b6e2f0;
+          color: #333;
+          margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+          .header {
+            flex-direction: column;
+            text-align: center;
+          }
+
+          .main-content h1 {
+            font-size: 2rem;
+          }
+
+          .tabla-sugerencias {
+            font-size: 0.8rem;
+          }
+
+          .tabla-sugerencias th,
+          .tabla-sugerencias td {
+            padding: 8px 10px;
+          }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <img src="img/nimbusair2.png" alt="Nimbus Air Logo">
+        <span>NIMBUS AIR</span>
+    </div>
+
+    <div class="header-buttons">
+        <button onclick="irAInicio()">Volver al Inicio</button>
+        <button onclick="irAReservasAdmin()">Ver Reservas</button>
+    </div>
+
+    <div class="user-section">
+        <div class="user-info" id="userInfo">
+            Cargando...
+        </div>
+        <button class="btn-logout" onclick="cerrarSesion()">
+            <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+        </button>
+    </div>
+
+    <div class="social-icons">
+        <a href="#"><i class="bi bi-instagram" style="font-size: 24px; color: #000000;"></i></a>
+        <a href="#"><i class="bi bi-whatsapp" style="font-size: 24px; color: #000000;"></i></a>
+        <a href="#"><i class="bi bi-twitter-x" style="font-size: 24px; color: #000000;"></i></a>
+        <a href="#"><i class="bi bi-facebook" style="font-size: 24px; color: #000000;"></i></a>
+    </div>
+</header>
+
+<main class="main-content">
+    <button class="btn-back" onclick="irAInicio()">
+        <i class="bi bi-arrow-left"></i> Volver al Inicio
+    </button>
+
+    <h1>Panel de Administración</h1>
+    <p>Todas las sugerencias del sistema</p>
+
+    <div class="sugerencias-container">
+        <div class="estadisticas" id="estadisticas">
+            <div class="estadistica-card">
+                <div class="estadistica-numero" id="totalSugerencias">0</div>
+                <div class="estadistica-texto">Total Sugerencias</div>
+            </div>
+            <div class="estadistica-card">
+                <div class="estadistica-numero" id="sugerenciasPendientes">0</div>
+                <div class="estadistica-texto">Pendientes</div>
+            </div>
+            <div class="estadistica-card">
+                <div class="estadistica-numero" id="sugerenciasRevisadas">0</div>
+                <div class="estadistica-texto">Revisadas</div>
+            </div>
+        </div>
+
+        <div id="loadingMessage">Cargando sugerencias...</div>
+
+        <table class="tabla-sugerencias" id="tablaSugerencias" style="display: none;">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Tipo</th>
+                <th>Mensaje</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody id="tablaSugerenciasBody">
+            </tbody>
+        </table>
+
+        <div id="noSugerenciasMessage" style="display: none; text-align: center; padding: 40px; color: #666;">
+            No hay sugerencias en el sistema.
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    © 2025 Nimbus Air. Todos los derechos reservados.
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const token = localStorage.getItem('jwtToken');
+        const userEmail = localStorage.getItem('userEmail');
+        const userName = localStorage.getItem('userName');
+        const userRole = localStorage.getItem('userRole');
+
+        if (!token || !userEmail || userRole !== 'ADMIN') {
+            alert('Acceso denegado. Se requiere rol de administrador.');
+            window.location.href = 'login.html';
+            return;
+        }
+
+        document.getElementById('userInfo').textContent = userName + ' (' + userEmail + ')';
+        cargarSugerencias();
+    });
+
+    function cargarSugerencias() {
+        const token = localStorage.getItem('jwtToken');
+
+        fetch('http://localhost:8080/api/sugerencias/admin/todas', {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else if (response.status === 403) {
+                throw new Error('No tienes permisos de administrador');
+            } else {
+                throw new Error('Error al obtener sugerencias');
+            }
+        })
+        .then(sugerencias => {
+            document.getElementById('loadingMessage').style.display = 'none';
+
+            if (sugerencias && sugerencias.length > 0) {
+                mostrarSugerencias(sugerencias);
+                actualizarEstadisticas(sugerencias);
+            } else {
+                document.getElementById('noSugerenciasMessage').style.display = 'block';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('loadingMessage').innerHTML = 'Error al cargar sugerencias: ' + error.message;
+        });
+    }
+
+    function mostrarSugerencias(sugerencias) {
+        const tablaBody = document.getElementById('tablaSugerenciasBody');
+        tablaBody.innerHTML = '';
+
+        sugerencias.forEach(sugerencia => {
+            const fila = document.createElement('tr');
+
+            const estadoClass = sugerencia.revisada ? 'estado-revisada' : 'estado-pendiente';
+            const estadoTexto = sugerencia.revisada ? 'REVISADA' : 'PENDIENTE';
+            const fecha = new Date(sugerencia.fechaCreacion).toLocaleDateString();
+
+            fila.innerHTML = `
+                <td>${sugerencia.id}</td>
+                <td>${sugerencia.nombre}</td>
+                <td>${sugerencia.email}</td>
+                <td><span class="tipo-sugerencia">${sugerencia.tipo}</span></td>
+                <td>${sugerencia.mensaje.length > 50 ? sugerencia.mensaje.substring(0, 50) + '...' : sugerencia.mensaje}</td>
+                <td>${fecha}</td>
+                <td><span class="${estadoClass}">${estadoTexto}</span></td>
+                <td>
+                    <button class="btn-revisar" onclick="marcarComoRevisada(${sugerencia.id})" ${sugerencia.revisada ? 'disabled' : ''}>
+                        ${sugerencia.revisada ? 'Revisada' : 'Marcar Revisada'}
+                    </button>
+                </td>
+            `;
+
+            tablaBody.appendChild(fila);
+        });
+
+        document.getElementById('tablaSugerencias').style.display = 'table';
+    }
+
+    function actualizarEstadisticas(sugerencias) {
+        const total = sugerencias.length;
+        const revisadas = sugerencias.filter(s => s.revisada).length;
+        const pendientes = total - revisadas;
+
+        document.getElementById('totalSugerencias').textContent = total;
+        document.getElementById('sugerenciasPendientes').textContent = pendientes;
+        document.getElementById('sugerenciasRevisadas').textContent = revisadas;
+    }
+
+    function marcarComoRevisada(id) {
+        const token = localStorage.getItem('jwtToken');
+
+        fetch(`http://localhost:8080/api/sugerencias/${id}/revisar`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Sugerencia marcada como revisada');
+                cargarSugerencias();
+            } else {
+                throw new Error('Error al marcar sugerencia como revisada');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error: ' + error.message);
+        });
+    }
+
+    function irAInicio() {
+        window.location.href = 'nimbus_air.html';
+    }
+
+    function irAReservasAdmin() {
+        window.location.href = 'admin_reservas.html';
+    }
+
+    function cerrarSesion() {
+        if (confirm('Estas seguro de que quieres cerrar sesión?')) {
+            localStorage.removeItem('jwtToken');
+            localStorage.removeItem('userEmail');
+            localStorage.removeItem('userName');
+            localStorage.removeItem('userId');
+            localStorage.removeItem('userRole');
+            localStorage.removeItem('reservaReciente');
+            localStorage.removeItem('todasLasReservas');
+
+            alert('Sesión cerrada correctamente');
+            window.location.href = 'login.html';
+        }
+    }
+</script>
+</body>
+</html>

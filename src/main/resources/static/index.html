@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nimbus Air</title>
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #eef8fc 0%, #b6e2f0 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #b6e2f0;
+            padding: 15px 30px;
+            border-bottom: 2px solid #8ac4d0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .logo h1 {
+            color: #003b58;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .btn-ingresar {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-ingresar:hover {
+            background: #2563eb;
+        }
+
+        .contenido-principal {
+            min-height: calc(100vh - 80px);
+        }
+
+        .contenido {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+
+        .texto {
+            flex: 1;
+        }
+
+        .texto h2 {
+            color: #003b58;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .texto p {
+            color: #333;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .col-md-6 {
+            flex: 1;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .servicio-card {
+            border: none;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .servicio-card img {
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #b6e2f0;
+            color: #333;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .contenido {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .texto h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <img src="img/nimbusair2.png" alt="Nimbus Air" />
+        <h1>NIMBUS AIR</h1>
+    </div>
+    <button id="btnIngresar" class="btn-ingresar">Ingresar</button>
+</header>
+
+<main class="contenido-principal">
+
+    <section class="contenido">
+        <section class="texto">
+            <h2>Vive las mejores vacaciones</h2>
+            <p>
+                ¿Qué estás esperando para ir en busca de nuevos lugares recreativos cerca de ti?<br><br>
+                Aprovechá las mejores opciones que tenemos para ti en nuestros paquetes turísticos.<br><br>
+                ¡Unite ahora mismo a Nimbus Air y reservá tu paquete en línea al mejor precio!
+            </p>
+        </section>
+
+        <div class="col-md-6">
+
+            <div id="carouselNimbus" class="carousel slide rounded-3 shadow" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="img/img1.jpg" alt="Destino1" />
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/img2.jpg" alt="Destino2" />
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/img3.jpg" alt="Destino3" />
+                    </div>
+                    <div class="carousel-item">
+                        <img src="img/img4.jpg" alt="Destino4" />
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselNimbus" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselNimbus" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="container my-5">
+        <h2 class="text-center fw-bold mb-4">Nuestros Servicios</h2>
+        <p class="text-center text-secondary mb-5">
+            En <strong>Nimbus Air</strong> trabajamos para ofrecerte una experiencia de vuelo inigualable.
+            Descubre nuestros aviones, atención personalizada y la calidad que nos distingue.
+        </p>
+
+        <div class="row justify-content-center g-4">
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow servicio-card">
+                    <img src="img/avion.jpg" class="card-img-top" alt="Aviones modernos">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Aviones Modernos</h5>
+                        <p class="card-text">
+                            Contamos con una flota de última generación equipada con tecnología de punta
+                            para garantizar tu comodidad y seguridad en cada vuelo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow servicio-card">
+                    <img src="img/tripulantes.jpg" class="card-img-top" alt="Atención personalizada">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">Atención Personalizada</h5>
+                        <p class="card-text">
+                            Nuestro equipo está disponible las 24 horas para ayudarte con tus reservas,
+                            resolver dudas y brindarte el mejor servicio posible.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        © 2025 Nimbus Air. Todos los derechos reservados.
+    </footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const btnIngresar = document.getElementById('btnIngresar');
+
+        btnIngresar.addEventListener('click', function() {
+            window.location.href = 'login.html';
+        });
+    });
+</script>
+</body>
+</html>

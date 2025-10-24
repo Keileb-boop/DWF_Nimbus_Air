@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Reserva - Nimbus Air</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <img src="img/nimbusair2.png" alt="Nimbus Air Logo">
+        <span>NIMBUS AIR</span>
+    </div>
+    <button class="btn-inicio" onclick="window.location.href='detallereserva.html'">
+        <i class="bi bi-arrow-left"></i> Volver a Reservas
+    </button>
+</header>
+
+<main class="contenedor">
+    <div class="card">
+        <h2>Modificar Reserva</h2>
+        <div id="loadingMessage" class="loading">
+            <i class="bi bi-hourglass-split"></i> Cargando datos de la reserva...
+        </div>
+        <form id="formModificarReserva" style="display: none;">
+            <input type="hidden" id="reservaId">
+
+            <div class="form-grupo">
+                <label for="paisOrigen">País de origen:</label>
+                <select id="paisOrigen" required>
+                    <option value="">Selecciona un país</option>
+                    <option value="El Salvador">El Salvador</option>
+                    <option value="Guatemala">Guatemala</option>
+                    <option value="Honduras">Honduras</option>
+                    <option value="Costa Rica">Costa Rica</option>
+                    <option value="Panamá">Panamá</option>
+                    <option value="México">México</option>
+                    <option value="Estados Unidos">Estados Unidos</option>
+                    <option value="Canadá">Canadá</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Brasil">Brasil</option>
+                    <option value="Chile">Chile</option>
+                    <option value="España">España</option>
+                    <option value="Francia">Francia</option>
+                    <option value="Italia">Italia</option>
+                    <option value="Alemania">Alemania</option>
+                    <option value="Reino Unido">Reino Unido</option>
+                    <option value="Japón">Japón</option>
+                    <option value="China">China</option>
+                    <option value="Australia">Australia</option>
+                </select>
+            </div>
+
+            <div class="form-grupo">
+                <label for="ciudadOrigen">Ciudad de origen:</label>
+                <select id="ciudadOrigen" required>
+                    <option value="">Selecciona una ciudad</option>
+                </select>
+            </div>
+
+            <div class="form-grupo">
+                <label for="paisDestino">País de destino:</label>
+                <select id="paisDestino" required>
+                    <option value="">Selecciona un país</option>
+                    <option value="El Salvador">El Salvador</option>
+                    <option value="Guatemala">Guatemala</option>
+                    <option value="Honduras">Honduras</option>
+                    <option value="Costa Rica">Costa Rica</option>
+                    <option value="Panamá">Panamá</option>
+                    <option value="México">México</option>
+                    <option value="Estados Unidos">Estados Unidos</option>
+                    <option value="Canadá">Canadá</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Brasil">Brasil</option>
+                    <option value="Chile">Chile</option>
+                    <option value="España">España</option>
+                    <option value="Francia">Francia</option>
+                    <option value="Italia">Italia</option>
+                    <option value="Alemania">Alemania</option>
+                    <option value="Reino Unido">Reino Unido</option>
+                    <option value="Japón">Japón</option>
+                    <option value="China">China</option>
+                    <option value="Australia">Australia</option>
+                </select>
+            </div>
+
+            <div class="form-grupo">
+                <label for="ciudadDestino">Ciudad de destino:</label>
+                <select id="ciudadDestino" required>
+                    <option value="">Selecciona una ciudad</option>
+                </select>
+            </div>
+
+            <div class="form-grupo">
+                <label for="fechaVuelo">Fecha de vuelo:</label>
+                <input type="date" id="fechaVuelo" required>
+            </div>
+
+            <div class="form-grupo">
+                <label for="horaSalida">Hora de salida:</label>
+                <input type="time" id="horaSalida" required>
+            </div>
+
+            <div class="form-grupo">
+                <label for="aerolinea">Aerolínea:</label>
+                <select id="aerolinea" required>
+                    <option value="">Selecciona una aerolínea</option>
+                    <option value="Nimbus Air">Nimbus Air</option>
+                    <option value="Avianca">Avianca</option>
+                    <option value="Delta Airlines">Delta Airlines</option>
+                    <option value="American Airlines">American Airlines</option>
+                    <option value="Copa Airlines">Copa Airlines</option>
+                    <option value="United Airlines">United Airlines</option>
+                    <option value="Air France">Air France</option>
+                    <option value="Lufthansa">Lufthansa</option>
+                    <option value="British Airways">British Airways</option>
+                    <option value="Iberia">Iberia</option>
+                    <option value="Latam">Latam</option>
+                    <option value="Qatar Airways">Qatar Airways</option>
+                    <option value="Emirates">Emirates</option>
+                    <option value="Japan Airlines">Japan Airlines</option>
+                </select>
+            </div>
+
+            <div class="form-grupo">
+                <label for="claseVuelo">Clase de vuelo:</label>
+                <select id="claseVuelo" required>
+                    <option value="">Selecciona una clase</option>
+                    <option value="Economy">Economy</option>
+                    <option value="Business">Business</option>
+                    <option value="First Class">First Class</option>
+                </select>
+            </div>
+
+            <div class="form-grupo">
+                <label for="asientoPreferido">Asiento preferido:</label>
+                <select id="asientoPreferido" required>
+                    <option value="">Selecciona asiento</option>
+                    <option value="Ventana">Ventana</option>
+                    <option value="Pasillo">Pasillo</option>
+                    <option value="Centro">Centro</option>
+                </select>
+            </div>
+
+            <div class="botones-form">
+                <button type="submit" class="btn-guardar">
+                    <i class="bi bi-check-circle"></i> Guardar Cambios
+                </button>
+                <button type="button" class="btn-cancelar" onclick="window.location.href='detallereserva.html'">
+                    <i class="bi bi-x-circle"></i> Cancelar
+                </button>
+            </div>
+        </form>
+        <div id="message" class="message"></div>
+    </div>
+</main>
+
+<footer>
+    © 2025 Nimbus Air. Todos los derechos reservados.
+</footer>
+
+<style>
+    * { box-sizing: border-box; font-family: "Poppins", sans-serif; margin: 0; padding: 0; }
+    body { background-color: #eef8fc; min-height: 100vh; display: flex; flex-direction: column; }
+    .header { display: flex; justify-content: space-between; align-items: center; background-color: #b6e2f0; padding: 15px 30px; border-bottom: 2px solid #8ac4d0; }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: bold; font-size: 20px; color: #003b58; }
+    .logo img { width: 50px; height: 50px; }
+    .btn-inicio { background: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; }
+    .btn-inicio:hover { background: #2563eb; }
+    .contenedor { flex: 1; padding: 30px; display: flex; justify-content: center; align-items: flex-start; }
+    .card { background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); padding: 30px; width: 100%; max-width: 600px; }
+    .card h2 { text-align: center; color: #003b58; margin-bottom: 25px; font-size: 24px; }
+    .form-grupo { margin-bottom: 20px; }
+    .form-grupo label { display: block; margin-bottom: 8px; font-weight: 500; color: #333; }
+    .form-grupo input, .form-grupo select { width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
+    .form-grupo input:focus, .form-grupo select:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1); }
+    .botones-form { display: flex; gap: 15px; margin-top: 30px; }
+    .btn-guardar { flex: 2; background: #10b981; color: white; border: none; padding: 15px; border-radius: 25px; font-size: 16px; cursor: pointer; }
+    .btn-guardar:hover { background: #059669; }
+    .btn-cancelar { flex: 1; background: #6c757d; color: white; border: none; padding: 15px; border-radius: 25px; font-size: 16px; cursor: pointer; }
+    .btn-cancelar:hover { background: #5a6268; }
+    .loading { text-align: center; padding: 40px; color: #666; font-size: 16px; }
+    .loading .bi { font-size: 24px; margin-bottom: 10px; display: block; }
+    .message { padding: 15px; border-radius: 8px; margin-top: 20px; text-align: center; font-weight: 500; }
+    .message.success { background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
+    .message.error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    footer { text-align: center; padding: 20px; background: #b6e2f0; color: #333; margin-top: auto; }
+</style>
+
+<script>
+    const ciudadesPorPais = {
+        "El Salvador": ["San Salvador", "Santa Ana", "San Miguel", "La Libertad"],
+        "Guatemala": ["Ciudad de Guatemala", "Antigua Guatemala", "Quetzaltenango", "Escuintla"],
+        "Honduras": ["Tegucigalpa", "San Pedro Sula", "La Ceiba", "Comayagua"],
+        "Costa Rica": ["San José", "Alajuela", "Cartago", "Heredia"],
+        "Panamá": ["Ciudad de Panamá", "Colón", "David", "Santiago"],
+        "México": ["Ciudad de México", "Guadalajara", "Monterrey", "Cancún", "Tijuana"],
+        "Estados Unidos": ["Nueva York", "Los Ángeles", "Miami", "Chicago", "Las Vegas"],
+        "Canadá": ["Toronto", "Vancouver", "Montreal", "Calgary", "Ottawa"],
+        "Colombia": ["Bogotá", "Medellín", "Cali", "Barranquilla", "Cartagena"],
+        "Argentina": ["Buenos Aires", "Córdoba", "Rosario", "Mendoza", "Bariloche"],
+        "Brasil": ["São Paulo", "Río de Janeiro", "Brasilia", "Salvador", "Fortaleza"],
+        "Chile": ["Santiago", "Valparaíso", "Concepción", "Antofagasta", "Puerto Montt"],
+        "España": ["Madrid", "Barcelona", "Valencia", "Sevilla", "Málaga"],
+        "Francia": ["París", "Lyon", "Marsella", "Toulouse", "Niza"],
+        "Italia": ["Roma", "Milán", "Nápoles", "Turín", "Florencia"],
+        "Alemania": ["Berlín", "Múnich", "Hamburgo", "Fráncfort", "Colonia"],
+        "Reino Unido": ["Londres", "Manchester", "Birmingham", "Glasgow", "Liverpool"],
+        "Japón": ["Tokio", "Osaka", "Kioto", "Yokohama", "Nagoya"],
+        "China": ["Pekín", "Shanghái", "Cantón", "Shenzhen", "Hong Kong"],
+        "Australia": ["Sídney", "Melbourne", "Brisbane", "Perth", "Adelaida"]
+    };
+
+    function actualizarCiudades(selectPais, selectCiudad) {
+        const pais = selectPais.value;
+        selectCiudad.innerHTML = '<option value="">Selecciona una ciudad</option>';
+
+        if (pais && ciudadesPorPais[pais]) {
+            ciudadesPorPais[pais].forEach(ciudad => {
+                const option = document.createElement('option');
+                option.value = ciudad;
+                option.textContent = ciudad;
+                selectCiudad.appendChild(option);
+            });
+        }
+    }
+
+    const token = localStorage.getItem('jwtToken');
+    const urlParams = new URLSearchParams(window.location.search);
+    const reservaId = urlParams.get('id');
+
+    if (!token) {
+        alert('Debes iniciar sesión para modificar reservas');
+        window.location.href = 'login.html';
+    } else if (!reservaId) {
+        alert('No se especificó la reserva a modificar');
+        window.location.href = 'detallereserva.html';
+    } else {
+        cargarDatosReserva();
+    }
+
+    function cargarDatosReserva() {
+        fetch(`http://localhost:8080/api/reservas/${reservaId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Error al cargar reserva');
+            }
+        })
+        .then(reserva => {
+            document.getElementById('loadingMessage').style.display = 'none';
+            document.getElementById('formModificarReserva').style.display = 'block';
+
+            document.getElementById('reservaId').value = reserva.id;
+            document.getElementById('paisOrigen').value = reserva.paisOrigen || '';
+            document.getElementById('paisDestino').value = reserva.paisDestino || '';
+            document.getElementById('fechaVuelo').value = reserva.fechaVuelo || '';
+            document.getElementById('horaSalida').value = reserva.horaSalida?.substring(0, 5) || '';
+            document.getElementById('aerolinea').value = reserva.aerolinea || '';
+            document.getElementById('claseVuelo').value = reserva.claseVuelo || '';
+            document.getElementById('asientoPreferido').value = reserva.asientoPreferido || '';
+
+            actualizarCiudades(document.getElementById('paisOrigen'), document.getElementById('ciudadOrigen'));
+            actualizarCiudades(document.getElementById('paisDestino'), document.getElementById('ciudadDestino'));
+
+            setTimeout(() => {
+                document.getElementById('ciudadOrigen').value = reserva.ciudadOrigen || '';
+                document.getElementById('ciudadDestino').value = reserva.ciudadDestino || '';
+            }, 100);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('loadingMessage').innerHTML = '<div class="message error">Error al cargar la reserva. <a href="detallereserva.html">Volver a reservas</a></div>';
+        });
+    }
+
+    document.getElementById('paisOrigen').addEventListener('change', function() {
+        actualizarCiudades(this, document.getElementById('ciudadOrigen'));
+    });
+
+    document.getElementById('paisDestino').addEventListener('change', function() {
+        actualizarCiudades(this, document.getElementById('ciudadDestino'));
+    });
+
+    document.getElementById('formModificarReserva').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const updateData = {
+            paisOrigen: document.getElementById('paisOrigen').value,
+            ciudadOrigen: document.getElementById('ciudadOrigen').value,
+            paisDestino: document.getElementById('paisDestino').value,
+            ciudadDestino: document.getElementById('ciudadDestino').value,
+            fechaVuelo: document.getElementById('fechaVuelo').value,
+            horaSalida: document.getElementById('horaSalida').value + ":00",
+            aerolinea: document.getElementById('aerolinea').value,
+            claseVuelo: document.getElementById('claseVuelo').value,
+            asientoPreferido: document.getElementById('asientoPreferido').value
+        };
+
+        const messageDiv = document.getElementById('message');
+        messageDiv.innerHTML = '<div class="message info">Actualizando reserva...</div>';
+
+        fetch(`http://localhost:8080/api/reservas/${reservaId}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updateData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                messageDiv.innerHTML = '<div class="message error">' + data.error + '</div>';
+            } else {
+                messageDiv.innerHTML = '<div class="message success">' + data.mensaje + '</div>';
+                setTimeout(() => {
+                    window.location.href = 'detallereserva.html';
+                }, 2000);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            messageDiv.innerHTML = '<div class="message error">Error al actualizar reserva</div>';
+        });
+    });
+
+    document.getElementById('fechaVuelo').min = new Date().toISOString().split('T')[0];
+</script>
+</body>
+</html>

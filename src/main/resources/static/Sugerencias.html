@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nimbus Air - Sugerencias</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+          background: linear-gradient(135deg, #eef8fc 0%, #b6e2f0 100%);
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: #b6e2f0;
+          padding: 15px 30px;
+          border-bottom: 2px solid #8ac4d0;
+          flex-wrap: wrap;
+          gap: 15px;
+        }
+
+        .logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-weight: bold;
+          font-size: 20px;
+          color: #003b58;
+        }
+
+        .logo img {
+          width: 50px;
+          height: 50px;
+        }
+
+        .header-buttons {
+          display: flex;
+          gap: 15px;
+        }
+
+        .header-buttons button {
+          background: none;
+          border: 2px solid #3b82f6;
+          color: #3b82f6;
+          padding: 8px 15px;
+          border-radius: 20px;
+          cursor: pointer;
+          font-weight: 500;
+          transition: all 0.3s ease;
+        }
+
+        .header-buttons button:hover {
+          background: #3b82f6;
+          color: white;
+        }
+
+        .user-section {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          color: #003b58;
+          font-weight: 500;
+        }
+
+        .user-info {
+          background: rgba(255, 255, 255, 0.3);
+          padding: 8px 15px;
+          border-radius: 20px;
+          border: 1px solid #8ac4d0;
+        }
+
+        .btn-logout {
+          background: #ef4444;
+          color: white;
+          border: none;
+          padding: 8px 15px;
+          border-radius: 20px;
+          cursor: pointer;
+          font-weight: 500;
+          transition: background 0.3s ease;
+        }
+
+        .btn-logout:hover {
+          background: #dc2626;
+        }
+
+        .social-icons {
+          display: flex;
+          gap: 15px;
+        }
+
+        .social-icons a {
+          color: #000000;
+          text-decoration: none;
+          transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+          transform: scale(1.2);
+        }
+
+        .main-content {
+          flex: 1;
+          padding: 40px 20px;
+          text-align: center;
+          max-width: 800px;
+          margin: 0 auto;
+          width: 100%;
+        }
+
+        .main-content h1 {
+          color: #003b58;
+          font-size: 2.5rem;
+          margin-bottom: 10px;
+          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-content p {
+          color: #555;
+          margin-bottom: 30px;
+          font-size: 1.1rem;
+        }
+
+        .form-container {
+          background: white;
+          padding: 40px;
+          border-radius: 15px;
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+          text-align: left;
+        }
+
+        .form-group {
+          margin-bottom: 25px;
+        }
+
+        label {
+          display: block;
+          margin-bottom: 8px;
+          font-weight: 600;
+          color: #003b58;
+        }
+
+        input, select, textarea {
+          width: 100%;
+          padding: 12px 15px;
+          border: 2px solid #8ac4d0;
+          border-radius: 8px;
+          font-size: 16px;
+          transition: all 0.3s ease;
+          background: #f8fafc;
+        }
+
+        input:focus, select:focus, textarea:focus {
+          outline: none;
+          border-color: #3b82f6;
+          background: white;
+          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 120px;
+        }
+
+        .type-options {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 10px;
+          margin-top: 10px;
+        }
+
+        .type-option {
+          border: 2px solid #8ac4d0;
+          border-radius: 8px;
+          padding: 15px;
+          text-align: center;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          background: #f8fafc;
+        }
+
+        .type-option:hover {
+          border-color: #3b82f6;
+          transform: translateY(-2px);
+        }
+
+        .type-option.selected {
+          border-color: #3b82f6;
+          background: rgba(59, 130, 246, 0.1);
+        }
+
+        .type-icon {
+          font-size: 24px;
+          margin-bottom: 8px;
+        }
+
+        .type-name {
+          font-weight: 600;
+          color: #003b58;
+        }
+
+        .type-desc {
+          font-size: 12px;
+          color: #666;
+          margin-top: 5px;
+        }
+
+        .btn-submit {
+          background: #3b82f6;
+          color: white;
+          border: none;
+          padding: 15px 30px;
+          border-radius: 25px;
+          font-size: 1.1rem;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+          width: 100%;
+          margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+          background: #2563eb;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-back {
+          background: #64748b;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 20px;
+          cursor: pointer;
+          font-weight: 500;
+          transition: all 0.3s ease;
+          margin-bottom: 20px;
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+        }
+
+        .btn-back:hover {
+          background: #475569;
+          transform: translateY(-2px);
+        }
+
+        .alert {
+          padding: 15px;
+          border-radius: 8px;
+          margin-bottom: 20px;
+          display: none;
+          text-align: center;
+          font-weight: 500;
+        }
+
+        .alert-success {
+          background: #d1fae5;
+          color: #065f46;
+          border: 1px solid #a7f3d0;
+        }
+
+        .alert-error {
+          background: #fee2e2;
+          color: #991b1b;
+          border: 1px solid #fecaca;
+        }
+
+        .footer {
+          text-align: center;
+          padding: 20px;
+          background: #b6e2f0;
+          color: #333;
+          margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+          .header {
+            flex-direction: column;
+            text-align: center;
+          }
+
+          .main-content h1 {
+            font-size: 2rem;
+          }
+
+          .form-container {
+            padding: 20px;
+          }
+
+          .type-options {
+            grid-template-columns: 1fr;
+          }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <img src="img/nimbusair2.png" alt="Nimbus Air Logo">
+        <span>NIMBUS AIR</span>
+    </div>
+
+    <div class="header-buttons">
+        <button onclick="irAInicio()">► Volver al Inicio</button>
+        <button onclick="mostrarAcercaDe()">► Acerca de nosotros</button>
+    </div>
+
+
+    <div class="user-section">
+        <div class="user-info" id="userInfo">
+            Cargando...
+        </div>
+        <button class="btn-logout" onclick="cerrarSesion()">
+            <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+        </button>
+    </div>
+
+    <div class="social-icons">
+        <a href="#"><i class="bi bi-instagram" style="font-size: 24px; color: #000000;"></i></a>
+        <a href="#"><i class="bi bi-whatsapp" style="font-size: 24px; color: #000000;"></i></a>
+        <a href="#"><i class="bi bi-twitter-x" style="font-size: 24px; color: #000000;"></i></a>
+        <a href="#"><i class="bi bi-facebook" style="font-size: 24px; color: #000000;"></i></a>
+    </div>
+</header>
+
+<main class="main-content">
+    <button class="btn-back" onclick="irAInicio()">
+        <i class="bi bi-arrow-left"></i> Volver al Inicio
+    </button>
+
+    <h1>Envíanos tus Sugerencias</h1>
+    <p>Tu opinión nos ayuda a mejorar NimbusAir</p>
+
+    <div class="form-container">
+        <div id="alertSuccess" class="alert alert-success">
+            ¡Gracias! Tu sugerencia ha sido enviada correctamente.
+        </div>
+
+        <div id="alertError" class="alert alert-error">
+            Ha ocurrido un error. Por favor, intenta nuevamente.
+        </div>
+
+        <form id="sugerenciaForm">
+            <div class="form-group">
+                <label for="nombre">Nombre completo *</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Ingresa tu nombre completo">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required placeholder="tu@email.com">
+            </div>
+
+            <div class="form-group">
+                <label>Tipo de sugerencia *</label>
+                <div class="type-options">
+                    <div class="type-option" data-type="COMENTARIO">
+                        <div class="type-icon"></div>
+                        <div class="type-name">Comentario</div>
+                        <div class="type-desc">Opinión general</div>
+                    </div>
+                    <div class="type-option" data-type="REPORTE_ERROR">
+                        <div class="type-icon"></div>
+                        <div class="type-name">Reportar Error</div>
+                        <div class="type-desc">Algo no funciona</div>
+                    </div>
+                    <div class="type-option" data-type="SOLICITUD_FUNCIONALIDAD">
+                        <div class="type-icon"></div>
+                        <div class="type-name">Nueva Función</div>
+                        <div class="type-desc">Ideas nuevas</div>
+                    </div>
+                    <div class="type-option" data-type="GENERAL">
+                        <div class="type-icon"></div>
+                        <div class="type-name">General</div>
+                        <div class="type-desc">Otros temas</div>
+                    </div>
+                </div>
+                <input type="hidden" id="tipo" name="tipo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mensaje">Tu mensaje *</label>
+                <textarea id="mensaje" name="mensaje" placeholder="Describe tu sugerencia, comentario o problema..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">
+                <i class="bi bi-send"></i> Enviar Sugerencia
+            </button>
+        </form>
+    </div>
+</main>
+
+<footer class="footer">
+    © 2025 Nimbus Air. Todos los derechos reservados.
+</footer>
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const token = localStorage.getItem('jwtToken');
+      const userEmail = localStorage.getItem('userEmail');
+      const userName = localStorage.getItem('userName');
+
+      if (!token || !userEmail) {
+
+        alert('Debes iniciar sesión para acceder a esta página');
+        window.location.href = 'login.html';
+        return;
+      }
+
+
+      document.getElementById('userInfo').textContent = `👤 ${userName} (${userEmail})`;
+
+
+      document.getElementById('nombre').value = userName || '';
+      document.getElementById('email').value = userEmail || '';
+    });
+
+
+    function irAInicio() {
+      window.location.href = 'nimbus_air.html';
+    }
+
+
+    function irASugerencias() {
+
+      return;
+    }
+
+
+    function irAReservas() {
+      window.location.href = 'reserva.html';
+    }
+
+
+    function verReservas() {
+      const token = localStorage.getItem('jwtToken');
+
+      if (!token) {
+        alert('Debes iniciar sesión para ver tus reservas');
+        window.location.href = 'login.html';
+        return;
+      }
+
+
+      fetch('http://localhost:8080/api/reservas', {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer ' + token,
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Error al obtener reservas');
+        }
+      })
+      .then(data => {
+        if (data.reservas && data.reservas.length > 0) {
+
+          localStorage.setItem('todasLasReservas', JSON.stringify(data.reservas));
+          window.location.href = 'detallereserva.html';
+        } else {
+          alert('No tienes reservas aún. ¡Crea tu primera reserva!');
+          window.location.href = 'reserva.html';
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('No se pudieron cargar las reservas. Serás redirigido a la página de reservas.');
+        window.location.href = 'reserva.html';
+      });
+    }
+
+
+    function cerrarSesion() {
+      if (confirm('¿Estás seguro de que quieres cerrar sesión?')) {
+        localStorage.removeItem('jwtToken');
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('reservaReciente');
+        localStorage.removeItem('todasLasReservas');
+
+        alert('Sesión cerrada correctamente');
+        window.location.href = 'login.html';
+      }
+    }
+
+
+    function mostrarAcercaDe() {
+      window.location.href = 'nosotros.html';
+    }
+
+
+
+
+    document.querySelectorAll('.type-option').forEach(option => {
+        option.addEventListener('click', function() {
+            document.querySelectorAll('.type-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            this.classList.add('selected');
+            document.getElementById('tipo').value = this.dataset.type;
+        });
+    });
+
+
+    document.getElementById('sugerenciaForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const token = localStorage.getItem('jwtToken');
+        if (!token) {
+            alert('Debes iniciar sesión para enviar sugerencias');
+            window.location.href = 'login.html';
+            return;
+        }
+
+        const formData = {
+            nombre: document.getElementById('nombre').value,
+            email: document.getElementById('email').value,
+            tipo: document.getElementById('tipo').value,
+            mensaje: document.getElementById('mensaje').value
+        };
+
+
+        if (!formData.tipo) {
+            showAlert('error', 'Por favor selecciona un tipo de sugerencia');
+            return;
+        }
+
+        if (!formData.mensaje.trim()) {
+            showAlert('error', 'Por favor escribe tu mensaje');
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:8080/api/sugerencias', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                showAlert('success', '¡Sugerencia enviada correctamente!');
+                document.getElementById('sugerenciaForm').reset();
+                document.querySelectorAll('.type-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+
+
+                const userName = localStorage.getItem('userName');
+                const userEmail = localStorage.getItem('userEmail');
+                document.getElementById('nombre').value = userName || '';
+                document.getElementById('email').value = userEmail || '';
+            } else {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Error en el servidor');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            showAlert('error', 'Error al enviar la sugerencia: ' + error.message);
+        }
+    });
+
+
+    function showAlert(type, message) {
+        const successAlert = document.getElementById('alertSuccess');
+        const errorAlert = document.getElementById('alertError');
+
+        if (type === 'success') {
+            successAlert.textContent = message;
+            successAlert.style.display = 'block';
+            errorAlert.style.display = 'none';
+        } else {
+            errorAlert.textContent = message;
+            errorAlert.style.display = 'block';
+            successAlert.style.display = 'none';
+        }
+
+
+        setTimeout(() => {
+            successAlert.style.display = 'none';
+            errorAlert.style.display = 'none';
+        }, 5000);
+    }
+</script>
+</body>
+</html>

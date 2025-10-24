@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nimbus Air - Reserva</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #eef8fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #b6e2f0;
+            padding: 10px 30px;
+            border-bottom: 2px solid #8ac4d0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 60px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #003b58;
+            margin: 0;
+        }
+
+        .btn-inicio {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-inicio:hover {
+            background-color: #2563eb;
+        }
+
+        .contenedor {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .formulario {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: #cbeaf7;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px 25px;
+            width: 300px;
+        }
+
+        .card h2 {
+            background-color: #b0e3f6;
+            text-align: center;
+            padding: 8px;
+            border-radius: 10px;
+            color: #003b58;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 7px;
+            border-radius: 10px;
+            border: none;
+            margin-top: 5px;
+            margin-bottom: 8px;
+        }
+        .btn-reserva {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 40px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .btn-reserva:hover {
+            background-color: #2563eb;
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #b6e2f0;
+            color: #333;
+            font-size: 13px;
+            margin-top: 30px;
+        }
+        .btn-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+      .user-info {
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .user-info h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .user-info p {
+            margin: 5px 0 0 0;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <img src="img/nimbusair2.png" alt="Nimbus Air Logo">
+        <h1>NIMBUS AIR</h1>
+    </div>
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <div id="userWelcome" style="color: #003b58; font-weight: bold;"></div>
+        <button class="btn-inicio" onclick="window.location.href='nimbus_air.html'">Inicio</button>
+        <button class="btn-inicio" onclick="logout()" style="background-color: #ef4444;">Cerrar Sesión</button>
+    </div>
+</header>
+
+<main class="contenedor">
+
+    <div class="user-info">
+        <h3>Reservando como:</h3>
+        <p id="currentUser">Cargando...</p>
+    </div>
+
+    <form id="reservaForm" class="formulario">
+
+        <div class="card">
+            <h2>Origen y destino</h2>
+            <label>País de origen</label>
+            <select name="paisOrigen" id="paisOrigen" required>
+                <option value="">Selecciona un país</option>
+                <option value="El Salvador">El Salvador</option>
+                <option value="Guatemala">Guatemala</option>
+                <option value="Honduras">Honduras</option>
+                <option value="Costa Rica">Costa Rica</option>
+                <option value="Panamá">Panamá</option>
+                <option value="México">México</option>
+                <option value="Estados Unidos">Estados Unidos</option>
+                <option value="Canadá">Canadá</option>
+                <option value="Colombia">Colombia</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Brasil">Brasil</option>
+                <option value="Chile">Chile</option>
+                <option value="España">España</option>
+                <option value="Francia">Francia</option>
+                <option value="Italia">Italia</option>
+                <option value="Alemania">Alemania</option>
+                <option value="Reino Unido">Reino Unido</option>
+                <option value="Japón">Japón</option>
+                <option value="China">China</option>
+                <option value="Australia">Australia</option>
+            </select>
+
+            <label>Ciudad de origen</label>
+            <select name="ciudadOrigen" id="ciudadOrigen" required>
+                <option value="">Selecciona una ciudad</option>
+            </select>
+
+            <label>País de destino</label>
+            <select name="paisDestino" id="paisDestino" required>
+                <option value="">Selecciona un país</option>
+                <option value="El Salvador">El Salvador</option>
+                <option value="Guatemala">Guatemala</option>
+                <option value="Honduras">Honduras</option>
+                <option value="Costa Rica">Costa Rica</option>
+                <option value="Panamá">Panamá</option>
+                <option value="México">México</option>
+                <option value="Estados Unidos">Estados Unidos</option>
+                <option value="Canadá">Canadá</option>
+                <option value="Colombia">Colombia</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Brasil">Brasil</option>
+                <option value="Chile">Chile</option>
+                <option value="España">España</option>
+                <option value="Francia">Francia</option>
+                <option value="Italia">Italia</option>
+                <option value="Alemania">Alemania</option>
+                <option value="Reino Unido">Reino Unido</option>
+                <option value="Japón">Japón</option>
+                <option value="China">China</option>
+                <option value="Australia">Australia</option>
+            </select>
+
+            <label>Ciudad de destino</label>
+            <select name="ciudadDestino" id="ciudadDestino" required>
+                <option value="">Selecciona una ciudad</option>
+            </select>
+
+            <label>Fecha de vuelo</label>
+            <input type="date" name="fechaVuelo" required>
+
+            <label>Hora de salida</label>
+            <input type="time" name="horaSalida" required>
+        </div>
+
+        <div class="card">
+            <h2>Vuelo y aerolínea</h2>
+            <label>Aerolínea</label>
+            <select name="aerolinea" required>
+                <option value="">Selecciona una aerolínea</option>
+                <option>Nimbus Air</option>
+                <option>Avianca</option>
+                <option>Delta Airlines</option>
+                <option>American Airlines</option>
+                <option>Copa Airlines</option>
+                <option>United Airlines</option>
+                <option>Air France</option>
+                <option>Lufthansa</option>
+                <option>British Airways</option>
+                <option>Iberia</option>
+                <option>Latam</option>
+                <option>Qatar Airways</option>
+                <option>Emirates</option>
+                <option>Japan Airlines</option>
+            </select>
+
+            <label>Clase de vuelo</label>
+            <select name="claseVuelo" required>
+                <option value="">Selecciona una clase</option>
+                <option>Economy</option>
+                <option>Business</option>
+                <option>First Class</option>
+            </select>
+
+            <label>Asiento preferido</label>
+            <select name="asientoPreferido" required>
+                <option value="">Selecciona una opción</option>
+                <option>Ventana</option>
+                <option>Pasillo</option>
+                <option>Centro</option>
+            </select>
+        </div>
+
+        <div class="card">
+            <h2>Datos del pasajero</h2>
+
+            <input type="hidden" name="usuarioEmail" id="usuarioEmail">
+
+            <label>Nombre completo del pasajero</label>
+            <input type="text" name="nombreCompleto" id="nombreCompleto" placeholder="Ingrese nombre del pasajero" required>
+
+            <label>Fecha de nacimiento</label>
+            <input type="date" name="fechaNacimiento" required>
+
+            <label>Número de pasaporte</label>
+            <input type="text" name="numeroPasaporte" placeholder="Ej. A12345678" required pattern="[A-Z0-9]{5,15}">
+        </div>
+
+        <div class="btn-container">
+            <button type="submit" class="btn-reserva">Confirmar reserva</button>
+        </div>
+    </form>
+</main>
+
+<footer>
+    © 2025 Nimbus Air. Todos los derechos reservados.
+</footer>
+
+<script>
+    const ciudadesPorPais = {
+        "El Salvador": ["San Salvador", "Santa Ana", "San Miguel", "La Libertad"],
+        "Guatemala": ["Ciudad de Guatemala", "Antigua Guatemala", "Quetzaltenango", "Escuintla"],
+        "Honduras": ["Tegucigalpa", "San Pedro Sula", "La Ceiba", "Comayagua"],
+        "Costa Rica": ["San José", "Alajuela", "Cartago", "Heredia"],
+        "Panamá": ["Ciudad de Panamá", "Colón", "David", "Santiago"],
+        "México": ["Ciudad de México", "Guadalajara", "Monterrey", "Cancún", "Tijuana"],
+        "Estados Unidos": ["Nueva York", "Los Ángeles", "Miami", "Chicago", "Las Vegas"],
+        "Canadá": ["Toronto", "Vancouver", "Montreal", "Calgary", "Ottawa"],
+        "Colombia": ["Bogotá", "Medellín", "Cali", "Barranquilla", "Cartagena"],
+        "Argentina": ["Buenos Aires", "Córdoba", "Rosario", "Mendoza", "Bariloche"],
+        "Brasil": ["São Paulo", "Río de Janeiro", "Brasilia", "Salvador", "Fortaleza"],
+        "Chile": ["Santiago", "Valparaíso", "Concepción", "Antofagasta", "Puerto Montt"],
+        "España": ["Madrid", "Barcelona", "Valencia", "Sevilla", "Málaga"],
+        "Francia": ["París", "Lyon", "Marsella", "Toulouse", "Niza"],
+        "Italia": ["Roma", "Milán", "Nápoles", "Turín", "Florencia"],
+        "Alemania": ["Berlín", "Múnich", "Hamburgo", "Fráncfort", "Colonia"],
+        "Reino Unido": ["Londres", "Manchester", "Birmingham", "Glasgow", "Liverpool"],
+        "Japón": ["Tokio", "Osaka", "Kioto", "Yokohama", "Nagoya"],
+        "China": ["Pekín", "Shanghái", "Cantón", "Shenzhen", "Hong Kong"],
+        "Australia": ["Sídney", "Melbourne", "Brisbane", "Perth", "Adelaida"]
+    };
+
+    function actualizarCiudades(selectPais, selectCiudad) {
+        const pais = selectPais.value;
+        selectCiudad.innerHTML = '<option value="">Selecciona una ciudad</option>';
+
+        if (pais && ciudadesPorPais[pais]) {
+            ciudadesPorPais[pais].forEach(ciudad => {
+                const option = document.createElement('option');
+                option.value = ciudad;
+                option.textContent = ciudad;
+                selectCiudad.appendChild(option);
+            });
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const paisOrigenSelect = document.getElementById('paisOrigen');
+        const ciudadOrigenSelect = document.getElementById('ciudadOrigen');
+        const paisDestinoSelect = document.getElementById('paisDestino');
+        const ciudadDestinoSelect = document.getElementById('ciudadDestino');
+
+        paisOrigenSelect.addEventListener('change', function() {
+            actualizarCiudades(paisOrigenSelect, ciudadOrigenSelect);
+        });
+
+        paisDestinoSelect.addEventListener('change', function() {
+            actualizarCiudades(paisDestinoSelect, ciudadDestinoSelect);
+        });
+
+        const token = localStorage.getItem('jwtToken');
+        const userEmail = localStorage.getItem('userEmail');
+        const userName = localStorage.getItem('userName');
+
+        if (!token || !userEmail) {
+            alert('Debes iniciar sesión para hacer una reserva');
+            window.location.href = 'login.html';
+            return;
+        }
+
+        document.getElementById('currentUser').textContent = `${userName} (${userEmail})`;
+        document.getElementById('userWelcome').textContent = `Hola, ${userName}`;
+
+        document.getElementById('usuarioEmail').value = userEmail;
+        document.getElementById('nombreCompleto').value = userName;
+
+        const today = new Date().toISOString().split('T')[0];
+        document.querySelector('input[name="fechaVuelo"]').min = today;
+
+        document.getElementById("reservaForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            const token = localStorage.getItem('jwtToken');
+            if (!token) {
+                alert('Sesión expirada. Por favor inicia sesión nuevamente.');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const formData = Object.fromEntries(new FormData(this));
+
+            const reservaData = {
+                paisOrigen: formData.paisOrigen,
+                ciudadOrigen: formData.ciudadOrigen,
+                paisDestino: formData.paisDestino,
+                ciudadDestino: formData.ciudadDestino,
+                fechaVuelo: formData.fechaVuelo,
+                horaSalida: formData.horaSalida + ":00",
+                aerolinea: formData.aerolinea,
+                claseVuelo: formData.claseVuelo,
+                asientoPreferido: formData.asientoPreferido,
+                nombreCompleto: formData.nombreCompleto,
+                fechaNacimiento: formData.fechaNacimiento,
+                numeroPasaporte: formData.numeroPasaporte
+            };
+
+            console.log("Enviando reserva:", reservaData);
+
+            try {
+                const response = await fetch("http://localhost:8080/api/reservas", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer " + token
+                    },
+                    body: JSON.stringify(reservaData)
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    localStorage.setItem("reservaReciente", JSON.stringify(data.reserva));
+                    alert('Reserva creada exitosamente');
+                    window.location.href = "detallereserva.html";
+                } else {
+                    const errorData = await response.json();
+                    let errorMessage = "Error al guardar la reserva:\n";
+                    if (typeof errorData === 'object') {
+                        for (const [field, message] of Object.entries(errorData)) {
+                            errorMessage += `${field}: ${message}\n`;
+                        }
+                    } else {
+                        errorMessage += errorData;
+                    }
+                    alert(errorMessage);
+                }
+            } catch(err) {
+                alert("Error de conexión:\n" + err.message);
+                console.error("Error completo:", err);
+            }
+        });
+    });
+
+    function logout() {
+        localStorage.removeItem('jwtToken');
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userName');
+        window.location.href = 'login.html';
+    }
+</script>
+</body>
+</html>

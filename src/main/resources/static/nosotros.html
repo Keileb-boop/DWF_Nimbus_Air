@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros - Nimbus Air</title>
+    <style>
+
+        body {
+          font-family: 'Segoe UI', Arial, sans-serif;
+          margin: 0;
+          background-color: #e6f7ff;
+          color: #222;
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+        }
+
+        header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          background-color: #cceeff;
+          padding: 10px 30px;
+          border-bottom: 3px solid #99ddff;
+        }
+
+        header .logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        header .logo img {
+          height: 50px;
+        }
+
+        header .logo h1 {
+          font-size: 22px;
+          margin: 0;
+          color: #003366;
+          letter-spacing: 1px;
+        }
+
+
+        .social-icons {
+          display: flex;
+          gap: 10px;
+        }
+
+        .social-icons a {
+          color: #000;
+          text-decoration: none;
+          font-size: 18px;
+          transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+          color: #007bff;
+        }
+
+
+        .btn-inicio {
+          background: linear-gradient(90deg, #007bff, #33a1fd);
+          color: white;
+          padding: 8px 20px;
+          border: none;
+          border-radius: 20px;
+          cursor: pointer;
+          font-weight: bold;
+          font-size: 14px;
+          transition: 0.3s;
+        }
+
+        .btn-inicio:hover {
+          background: linear-gradient(90deg, #005fcc, #2b8ce6);
+        }
+
+
+        main {
+          flex: 1;
+          background-color: white;
+          margin: 20px 20px 0 20px;
+          border-radius: 15px;
+          overflow: hidden;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        section {
+          text-align: center;
+          padding: 20px;
+        }
+
+        section h2 {
+          font-size: 24px;
+          margin: 10px 0 20px 0;
+          color: #003366;
+          border-bottom: 2px solid #99ddff;
+          display: inline-block;
+          padding-bottom: 5px;
+        }
+
+        .img-nosotros {
+          width: 100%;
+          max-height: 250px;
+          object-fit: cover;
+          background-color: #003366;
+        }
+
+        section p {
+          text-align: justify;
+          max-width: 900px;
+          margin: 10px auto;
+          line-height: 1.6;
+          font-size: 15px;
+        }
+
+
+        footer {
+          width: 100%;
+          background-color: #cceeff;
+          text-align: center;
+          padding: 10px 0;
+          font-size: 13px;
+          color: #003366;
+          border-top: 2px solid #99ddff;
+          border-radius: 20px 20px 0 0;
+          margin-top: 20px;
+          box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 600px) {
+          header {
+            flex-direction: column;
+            gap: 10px;
+          }
+          .btn-inicio {
+            width: 100%;
+            max-width: 120px;
+          }
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/a2e0e6adf6.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="img/nimbusair2.png" alt="Logo Nimbus Air">
+        <h1>NIMBUS AIR</h1>
+    </div>
+
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+
+    <button class="btn-inicio" onclick="location.href='index.html'">Inicio</button>
+</header>
+
+<main>
+    <section>
+        <h2>Sobre nosotros</h2>
+        <img class="img-nosotros" src="img/imagennimbus.png" alt="Imagen sobre nosotros">
+        <p>
+            En Nimbus Air, nos dedicamos a ofrecerte una experiencia rápida, sencilla y segura al momento de reservar tus vuelos.
+            Nuestra plataforma te permite seleccionar fácilmente tu país y ciudad de origen y destino, elegir entre diversas aerolíneas, clases de vuelo y asientos preferidos, todo en un solo lugar.
+        </p>
+        <p>
+            Contamos con un sistema de reservas que incluye un resumen claro de tu itinerario, posibilidad de cancelar reservas,
+            y un proceso de pago integrado que se adapta a tus necesidades: ya sea por tarjeta, transferencia o PayPal.
+            Nuestro objetivo es hacer que planificar tu próximo viaje sea tan cómodo como el vuelo que te espera.
+        </p>
+    </section>
+</main>
+
+<footer>
+    © 2025 Nimbus Air. Todos los derechos reservados.
+</footer>
+</body>
+</html>
