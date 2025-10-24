@@ -26,4 +26,6 @@ Desarrollado como un sistema modular que integra backend en **PHP** y **Java**, 
 <p align="center">
 <img width="700" height="392" alt="swagger-banner" src="https://github.com/user-attachments/assets/d5c01a26-f6a5-4eac-aed6-c105a86f09d7" />
 <img width="402" height="125" alt="mariadb" src="https://github.com/user-attachments/assets/829e631e-7ecf-407a-a166-9eed689f64db" />
+<img width="300" height="215" alt="spring-boot" src="https://github.com/user-attachments/assets/2561a950-d6c0-4c5b-8f86-b1de2bfb838c" />
+
 </p>
