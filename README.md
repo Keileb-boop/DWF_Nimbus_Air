@@ -29,3 +29,12 @@ Desarrollado como un sistema modular que integra backend en **PHP** y **Java**, 
 <img width="300" height="215" alt="spring-boot" src="https://github.com/user-attachments/assets/2561a950-d6c0-4c5b-8f86-b1de2bfb838c" />
 
 </p>
+
+<h1>BASE DE DATOS</h1>
+Para mantener todo conectado, utilizando Xampp y levantando el servicio de PHPMyAdmin y usando Maria db
+se debe crear la base de datos con el siguiente query:
+
+<h1>CREATE DATABASE nimbus_air</h1>
+
+Esto crea la base de datos y una vez se corre el programa en IntelliJ IDEA crea las tablas para
+futuros INSERTS de las páginas web.
